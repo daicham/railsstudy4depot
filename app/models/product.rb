@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
 
   private
   # この商品を参照している品目がないことを確認する
-  def ensure_not_refernced_by_any_line_item
+  def ensure_not_referenced_by_any_line_item
     if line_items.empty?
       return true
     else
