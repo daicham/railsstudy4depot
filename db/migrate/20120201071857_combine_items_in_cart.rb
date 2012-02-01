@@ -18,5 +18,16 @@ class CombineItemsInCart < ActiveRecord::Migration
   end
 
   def down
+    #数量>1の品目を複数の品目に分割する
+    LineItem.where("quantity>1").each do |line_item|
+      #個別の品目を追加する
+      line_item.quantity.times do
+        LineItem.create cart_id: line_item.cart_id,
+                        product_id: line_item.product_id,
+                        quantity: 1
+      end
+      #元の品目を削除する
+      line_item.destroy
+    end
   end
 end
