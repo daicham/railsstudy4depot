@@ -13,9 +13,9 @@
   </div>
   <div id="column">
     <div id="side">
-      <div id="cart">
+      <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
         <%= render @cart %>
-      </div>
+      <% end %>
       <ul>
         <li><a href="#">ホーム</a></li>
         <li><a href="#">よくある質問</a></li>
